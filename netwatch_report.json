@@ -1,0 +1,234 @@
+{
+  "metadata": {
+    "tool": "NetWatch",
+    "version": "1.0",
+    "generated_at": "2026-03-25 16:21:59",
+    "pcap_file": "exercice.pcap"
+  },
+  "stats": {
+    "capture_start": "2026-02-28 20:55:06",
+    "capture_end": "2026-03-01 01:16:35",
+    "duration_seconds": 15689.21,
+    "total_packets": 15512,
+    "total_ips": 99,
+    "protocol_counts": {
+      "UDP": 2113,
+      "ARP": 836,
+      "DNS": 446,
+      "TCP": 12544,
+      "ICMP": 19
+    },
+    "top_talkers": [
+      {
+        "ip": "10.2.28.88",
+        "bytes": 1516807,
+        "kb": 1481.26
+      },
+      {
+        "ip": "23.64.147.24",
+        "bytes": 1135801,
+        "kb": 1109.18
+      },
+      {
+        "ip": "23.218.232.148",
+        "bytes": 1025313,
+        "kb": 1001.28
+      },
+      {
+        "ip": "10.2.28.2",
+        "bytes": 569750,
+        "kb": 556.4
+      },
+      {
+        "ip": "23.192.223.23",
+        "bytes": 213234,
+        "kb": 208.24
+      },
+      {
+        "ip": "23.205.110.136",
+        "bytes": 151725,
+        "kb": 148.17
+      },
+      {
+        "ip": "23.192.223.16",
+        "bytes": 122515,
+        "kb": 119.64
+      },
+      {
+        "ip": "150.171.28.11",
+        "bytes": 105511,
+        "kb": 103.04
+      },
+      {
+        "ip": "23.64.115.206",
+        "bytes": 87802,
+        "kb": 85.74
+      },
+      {
+        "ip": "23.41.251.53",
+        "bytes": 85893,
+        "kb": 83.88
+      }
+    ],
+    "top_targeted_ports": [
+      {
+        "port": 443,
+        "count": 3370,
+        "service": "HTTPS"
+      },
+      {
+        "port": 445,
+        "count": 825,
+        "service": "SMB"
+      },
+      {
+        "port": 51911,
+        "count": 823,
+        "service": "unknown"
+      },
+      {
+        "port": 62035,
+        "count": 739,
+        "service": "unknown"
+      },
+      {
+        "port": 389,
+        "count": 591,
+        "service": "unknown"
+      },
+      {
+        "port": 80,
+        "count": 533,
+        "service": "HTTP"
+      },
+      {
+        "port": 49671,
+        "count": 470,
+        "service": "unknown"
+      },
+      {
+        "port": 135,
+        "count": 283,
+        "service": "unknown"
+      },
+      {
+        "port": 51912,
+        "count": 274,
+        "service": "unknown"
+      },
+      {
+        "port": 59991,
+        "count": 226,
+        "service": "unknown"
+      }
+    ],
+    "alerts_by_severity": {
+      "HIGH": 1,
+      "CRITICAL": 2,
+      "MEDIUM": 1
+    },
+    "alerts_by_category": {
+      "Port Scan": 2,
+      "SYN Flood": 1,
+      "DNS Abuse": 1
+    },
+    "risk_score": 70,
+    "risk_level": "ÉLEVÉ",
+    "total_alerts": 4,
+    "unique_suspicious_ips": 2
+  },
+  "alerts": [
+    {
+      "id": 1,
+      "severity": "HIGH",
+      "category": "Port Scan",
+      "src_ip": "10.2.28.88",
+      "description": "Scan de 15 ports distincts détecté",
+      "details": {
+        "ports_count": 15,
+        "sample_ports": [
+          53,
+          80,
+          88,
+          123,
+          135,
+          137,
+          138,
+          389,
+          443,
+          445,
+          1900,
+          5353,
+          5355,
+          49671,
+          62068
+        ]
+      },
+      "timestamp": "2026-03-25 16:21:59"
+    },
+    {
+      "id": 2,
+      "severity": "CRITICAL",
+      "category": "Port Scan",
+      "src_ip": "10.2.28.2",
+      "description": "Scan de 379 ports distincts détecté",
+      "details": {
+        "ports_count": 379,
+        "sample_ports": [
+          123,
+          137,
+          49281,
+          49292,
+          49377,
+          49395,
+          49412,
+          49555,
+          49745,
+          49841,
+          49865,
+          50082,
+          50191,
+          50200,
+          50220,
+          50246,
+          50248,
+          50255,
+          50316,
+          50317
+        ]
+      },
+      "timestamp": "2026-03-25 16:21:59"
+    },
+    {
+      "id": 3,
+      "severity": "CRITICAL",
+      "category": "SYN Flood",
+      "src_ip": "10.2.28.88",
+      "description": "349 paquets SYN (0.0/s) — DDoS probable",
+      "details": {
+        "syn_count": 349,
+        "rate_per_sec": 0.02
+      },
+      "timestamp": "2026-03-25 16:21:59"
+    },
+    {
+      "id": 4,
+      "severity": "MEDIUM",
+      "category": "DNS Abuse",
+      "src_ip": "10.2.28.88",
+      "description": "446 requêtes DNS (49 domaines uniques)",
+      "details": {
+        "query_count": 446,
+        "unique_domains": 49,
+        "sample": [
+          "_ldap._tcp.Default-First-Site-Name._sites.easyas123.tech.",
+          "watson.events.data.microsoft.com.",
+          "msedge.b.tlu.dl.delivery.mp.microsoft.com.",
+          "armmf.adobe.com.",
+          "ecs.office.com."
+        ]
+      },
+      "timestamp": "2026-03-25 16:21:59"
+    }
+  ]
+}
