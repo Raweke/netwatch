@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-NetWatch - Générateur de dashboard HTML interactif
-Lance ce script après netwatch.py pour obtenir le rapport visuel.
+NetWatch - Générateur de dashboard 
+Lancer ce script après netwatch.py pour obtenir le rapport visuel.
 """
 
 import json
@@ -11,13 +11,13 @@ from datetime import datetime
 
 
 def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboard.html"):
-    """Génère un dashboard HTML complet à partir des données d'analyse."""
+    """dDashboard à partir des données d'analyse"""
 
     stats = report_data.get("stats", {})
     alerts = report_data.get("alerts", [])
     meta = report_data.get("metadata", {})
 
-    # Préparation des données JSON pour l'injection dans le HTML
+    #Préparation données JSON pour injection dans  HTML
     protocol_data = stats.get("protocol_counts", {})
     top_talkers = stats.get("top_talkers", [])
     top_ports = stats.get("top_targeted_ports", [])
@@ -77,7 +77,6 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
     overflow-x: hidden;
   }}
 
-  /* Grid de fond */
   body::before {{
     content: '';
     position: fixed;
@@ -92,7 +91,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
 
   .container {{ max-width: 1400px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }}
 
-  /* ── Header ── */
+  
   header {{
     border-bottom: 1px solid var(--border);
     padding: 20px 0;
@@ -122,7 +121,6 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
   .header-meta {{ font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-align: right; }}
   .header-meta strong {{ color: var(--text); }}
 
-  /* ── Badge de risque ── */
   .risk-badge {{
     display: flex; align-items: center; gap: 12px;
     background: var(--surface);
@@ -144,7 +142,6 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
   .risk-info h2 {{ font-size: 1.1rem; font-weight: 700; }}
   .risk-info p {{ font-size: 0.8rem; color: var(--text-dim); margin-top: 4px; font-family: var(--font-mono); }}
 
-  /* ── Cartes stats ── */
   .stats-grid {{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -174,7 +171,6 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
   .stat-value {{ font-size: 2rem; font-weight: 800; line-height: 1; }}
   .stat-label {{ font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }}
 
-  /* ── Alertes sévérité ── */
   .sev-grid {{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -199,7 +195,8 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
   .sev-low {{ background: rgba(48,209,88,0.1); border-color: rgba(48,209,88,0.4); }}
   .sev-low .sev-dot {{ background: #30d158; }}
 
-  /* ── Layout principal ── */
+ 
+  
   .main-grid {{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -230,7 +227,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
     border-radius: 2px;
   }}
 
-  /* ── Tableau des alertes ── */
+
   .filter-bar {{
     display: flex;
     gap: 10px;
@@ -290,7 +287,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
   .table-wrap::-webkit-scrollbar-track {{ background: var(--surface2); }}
   .table-wrap::-webkit-scrollbar-thumb {{ background: var(--border); border-radius: 3px; }}
 
-  /* ── Top Talkers ── */
+
   .bar-list {{ display: flex; flex-direction: column; gap: 10px; }}
   .bar-item {{ display: flex; flex-direction: column; gap: 4px; }}
   .bar-header {{ display: flex; justify-content: space-between; font-size: 0.75rem; }}
@@ -299,7 +296,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
   .bar-track {{ height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }}
   .bar-fill {{ height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.8s ease; }}
 
-  /* ── Modal détail ── */
+  
   .modal {{ display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(10,14,26,0.9); backdrop-filter: blur(4px); }}
   .modal.open {{ display: flex; align-items: center; justify-content: center; }}
   .modal-box {{
@@ -325,14 +322,14 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
 
   .count-badge {{ display: inline-block; background: rgba(0,212,255,0.1); color: var(--accent); border-radius: 6px; padding: 2px 8px; font-family: var(--font-mono); font-size: 0.7rem; }}
 
-  /* Responsive */
+
   @media (max-width: 768px) {{
     .main-grid {{ grid-template-columns: 1fr; }}
     .sev-grid {{ grid-template-columns: repeat(2, 1fr); }}
     .stats-grid {{ grid-template-columns: repeat(2, 1fr); }}
   }}
 
-  /* Animation d'entrée */
+ 
   .card, .stat-card, .sev-card {{
     animation: fadeUp 0.4s ease backwards;
   }}
@@ -346,7 +343,6 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
 
 <div class="container">
 
-  <!-- Header -->
   <header>
     <div class="header-inner">
       <div class="logo">
@@ -364,7 +360,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
     </div>
   </header>
 
-  <!-- Score de risque -->
+  <!-- Score risque -->
   <div class="risk-badge">
     <div class="risk-circle" style="border-color: {risk_color}; color: {risk_color};">
       <div class="score">{risk_score}</div>
@@ -381,7 +377,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
     </div>
   </div>
 
-  <!-- Stats générales -->
+  <!-- Stats -->
   <div class="stats-grid">
     <div class="stat-card" style="animation-delay:0.05s">
       <div class="stat-icon">📦</div>
@@ -410,7 +406,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
     </div>
   </div>
 
-  <!-- Alertes par sévérité -->
+  <!-- Alertes sévérité -->
   <div class="sev-grid">
     <div class="sev-card sev-critical">
       <div class="sev-dot"></div>
@@ -462,7 +458,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
     </div>
   </div>
 
-  <!-- Tableau des alertes -->
+  <!-- Tableau alertes -->
   <div class="card full-width">
     <div class="card-title">
       Alertes détaillées
@@ -515,7 +511,7 @@ def generate_html_report(report_data: dict, output_path: str = "netwatch_dashboa
 </div>
 
 <script>
-// ─── Données injectées ────────────────────────────────────
+// Données injectées
 const allAlerts = {alerts_json};
 const protocolData = {protocol_json};
 const topTalkers = {talkers_json};
@@ -523,13 +519,13 @@ const topPorts = {ports_json};
 const alertsBySev = {sev_json};
 const alertsByCat = {cat_json};
 
-// ─── Compteurs sévérité ───────────────────────────────────
+// Compteurs sévérité 
 document.getElementById('cnt-critical').textContent = alertsBySev['CRITICAL'] || 0;
 document.getElementById('cnt-high').textContent = alertsBySev['HIGH'] || 0;
 document.getElementById('cnt-medium').textContent = alertsBySev['MEDIUM'] || 0;
 document.getElementById('cnt-low').textContent = alertsBySev['LOW'] || 0;
 
-// ─── Options Chart.js communes ────────────────────────────
+//Options Chart.js communes 
 const chartDefaults = {{
   plugins: {{
     legend: {{ labels: {{ color: '#94a3b8', font: {{ family: 'JetBrains Mono', size: 11 }} }} }},
@@ -544,7 +540,7 @@ const chartDefaults = {{
   }}
 }};
 
-// ─── Graphique protocoles ─────────────────────────────────
+// Graphique protocoles 
 const protoLabels = Object.keys(protocolData);
 const protoValues = Object.values(protocolData);
 const protoColors = ['#00d4ff','#7c3aed','#30d158','#f0c040','#ff6b2d','#ff2d55'];
@@ -562,7 +558,7 @@ new Chart(document.getElementById('chartProtocols'), {{
   }}
 }});
 
-// ─── Graphique catégories ─────────────────────────────────
+// graphique catégories 
 const catLabels = Object.keys(alertsByCat);
 const catValues = Object.values(alertsByCat);
 new Chart(document.getElementById('chartCategories'), {{
@@ -583,7 +579,7 @@ new Chart(document.getElementById('chartCategories'), {{
   }}
 }});
 
-// ─── Graphique ports ──────────────────────────────────────
+//graphique ports 
 if (topPorts.length > 0) {{
   const portLabels = topPorts.map(p => `${{p.port}} (${{p.service}})`);
   const portValues = topPorts.map(p => p.count);
@@ -604,7 +600,7 @@ if (topPorts.length > 0) {{
   }});
 }}
 
-// ─── Top Talkers barres ───────────────────────────────────
+// Top Talkers barre
 if (topTalkers.length > 0) {{
   const maxBytes = topTalkers[0].bytes;
   const container = document.getElementById('talkersBar');
@@ -621,10 +617,10 @@ if (topTalkers.length > 0) {{
   }});
 }}
 
-// ─── Tableau alertes ──────────────────────────────────────
+//Tableau alertes 
 const sevIcons = {{ CRITICAL:'🔴', HIGH:'🟠', MEDIUM:'🟡', LOW:'🔵' }};
 
-// Remplir le filtre catégories
+// Rempli filtre catégories
 const uniqueCats = [...new Set(allAlerts.map(a => a.category))];
 const catSelect = document.getElementById('filterCat');
 uniqueCats.forEach(c => {{
@@ -670,7 +666,7 @@ document.getElementById('filterCat').addEventListener('change', () => renderTabl
 
 renderTable(allAlerts);
 
-// ─── Modal détail ─────────────────────────────────────────
+// Modal détail
 function showDetail(idx) {{
   const a = allAlerts[idx];
   document.getElementById('modal-sev').innerHTML =
@@ -688,7 +684,7 @@ document.getElementById('detailModal').addEventListener('click', e => {{
   if (e.target.id === 'detailModal') closeModal();
 }});
 
-// ─── Export CSV ───────────────────────────────────────────
+//export CSV
 function exportCSV() {{
   const filtered = filterAlerts();
   const header = ['ID','Sévérité','Catégorie','IP Source','Description','Horodatage'];
@@ -708,14 +704,12 @@ function exportCSV() {{
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    print(f"[+] Dashboard HTML généré : {output_path}")
-    print(f"    → Ouvre ce fichier dans ton navigateur pour visualiser le rapport.")
+    print(f"Dashboard HTML généré : {output_path}")
+    print(f"    → Ouvrir ce fichier dans ton navigateur pour visualiser le rapport.")
     return output_path
 
 
-# ─────────────────────────────────────────────
-#  Point d'entrée standalone
-# ─────────────────────────────────────────────
+
 if __name__ == "__main__":
     import argparse
 
@@ -729,7 +723,7 @@ if __name__ == "__main__":
     json_path = Path(args.input)
     if not json_path.exists():
         print(f"[!] Fichier JSON introuvable : {json_path}")
-        print("    Lance d'abord : python netwatch.py --demo")
+        print("    Lancer d'abord : python netwatch.py --demo")
         sys.exit(1)
 
     with open(json_path, "r", encoding="utf-8") as f:
